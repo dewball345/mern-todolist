@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import Navbar from "./components/navbar.component"
+import TodoList from "./components/todo-list.component";
+import EditTodo from "./components/edit-todo.component";
+import CreateTodo from "./components/create-todo.component";
+import CreateUser from "./components/create-user.component";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      paddingTop:70 + "px"
+    }}>
+      <Router>
+        <Navbar />
+        <br/>
+        <Route path="/" exact component={TodoList} />
+        <Route path="/edit/:id" component={EditTodo} />
+        <Route path="/create" component={CreateTodo} />
+        <Route path="/user" component={CreateUser} />
+      </Router>
     </div>
   );
 }
